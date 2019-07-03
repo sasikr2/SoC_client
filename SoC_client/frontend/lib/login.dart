@@ -1,9 +1,16 @@
+import 'package:Incognichat/main.dart';
 import 'package:flutter/material.dart';
 import 'comms.dart';
 
-class MyLoginPage extends StatelessWidget {
 
+class MyLoginPage extends StatefulWidget {
   @override
+  _MyLoginPageState createState() => _MyLoginPageState();
+}
+
+class _MyLoginPageState extends State<MyLoginPage> {
+  @override
+
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -11,14 +18,24 @@ class MyLoginPage extends StatelessWidget {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-
+    final info = UserInfo(
+      user: "example@iitk.ac.in",
+    );
+    final pass = PassInfo(
+      pass: "1234",
+    );
     final emailField = TextField(
       obscureText: false,
+      keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Email",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+      onChanged: (text1) {
+        info.user = text1;
+      },
+      textInputAction: TextInputAction.next,
     );
 
     final passwordField = TextField(
@@ -28,6 +45,10 @@ class MyLoginPage extends StatelessWidget {
           hintText: "Password",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+      onChanged: (text) {
+        pass.pass = text;
+      },
+      textInputAction: TextInputAction.done,
     );
 
     final loginButon = Material(
@@ -40,7 +61,10 @@ class MyLoginPage extends StatelessWidget {
         onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CommScreen()),
+              MaterialPageRoute(builder: (context) => CommScreen(
+                  info: info,
+                  pass: pass
+              )),
             );
           },
         child: Text("Login",
