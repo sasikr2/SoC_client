@@ -56,6 +56,7 @@ class CommScreen extends StatelessWidget {
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               GestureDetector(
                 onTap: () {
@@ -67,7 +68,20 @@ class CommScreen extends StatelessWidget {
                 child: CircleAvatar(
                   backgroundImage: ExactAssetImage("assets/logo.png"),
                 ),
-              )
+              ),
+              Text("LogOut"),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) => MyLoginPage() )
+                  );
+                },
+                child: CircleAvatar(
+                  backgroundImage: ExactAssetImage("assets/logo.png"),
+                ),
+              ),
+              Text("LogOut"),
             ],
           ),
         ),
