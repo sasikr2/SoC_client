@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:scoped_model/scoped_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -12,10 +14,11 @@ class UserModel extends Model{
   User get user {
     return _authenticatedUser;
   }
+  var rand = new Random();
   bool isLoading = false;
   notifyListeners();
   void login(String email, String password){
-    _authenticatedUser = User(id:'asdfghjkl' ,email:email, token: password);
+    _authenticatedUser = User(id:'asdfghjkl' ,email:email, token: password, randID: rand.nextInt(100));
   }
 
   Future<Map<String,dynamic>> authenticate(String email,String password,[AuthMode mode = AuthMode.Login])async{

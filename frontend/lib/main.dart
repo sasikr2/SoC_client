@@ -1,3 +1,4 @@
+import 'package:Incognichat/pages/posts-list.dart';
 import 'package:flutter/material.dart';
 import 'package:Incognichat/pages/create-post.dart';
 import 'package:Incognichat/pages/home_page.dart';
@@ -32,10 +33,11 @@ class _MyApp extends State<MyApp>{
       //home:AuthenPage(),
       
       routes:{
-        '/':(BuildContext context) =>_model.user == null ? AuthenPage() : HomePage(_model),
+        '/':(BuildContext context) =>(_model.user == null) ? AuthenPage() : HomePage(_model),
         '/home':(BuildContext context) => HomePage(_model),
-        '/post':(BuildContext context)=> PostCreatePage(),
-        '/chat_home': (BuildContext context) => ChatHomePage(_model)
+        '/post':(BuildContext context) => PostCreatePage(_model),
+        '/chat_home': (BuildContext context) => ChatHomePage(_model),
+        '/Postlist': (BuildContext context) => PostListPage(_model)
       } 
     )  
     );

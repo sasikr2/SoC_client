@@ -7,6 +7,8 @@ import 'package:scoped_model/scoped_model.dart';
 import '../model/community.dart';
 
 class CommunityCreatePage extends StatefulWidget{
+  final MainModel model;
+  CommunityCreatePage(this.model);
   @override
   State<StatefulWidget> createState() {
     
@@ -61,10 +63,10 @@ class _CommunityCreatePage extends State<CommunityCreatePage>{
       _formData['about'],
       0,
       false,
-      null
+      []
     ).then((bool success){
       if( success)
-         Navigator.push(context,MaterialPageRoute(builder: (BuildContext context) => CommunityListPage()));
+         Navigator.push(context,MaterialPageRoute(builder: (BuildContext context) => CommunityListPage(widget.model)));
       else{
       showDialog(
               context: context,
